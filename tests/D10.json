@@ -1,0 +1,101 @@
+{
+  "cases": [
+    {
+      "request": {
+        "action": "directional",
+        "nx": 2,
+        "ny": 1,
+        "origin": [
+          0,
+          0
+        ],
+        "spacing": [
+          1,
+          1
+        ],
+        "rays": [
+          [
+            0.5,
+            -1,
+            0.5,
+            2
+          ],
+          [
+            1.5,
+            -1,
+            1.5,
+            2
+          ]
+        ],
+        "psf": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "attenuation": [
+          0,
+          0
+        ],
+        "efficiency": [
+          1,
+          1
+        ],
+        "background": [
+          0,
+          0
+        ],
+        "data": [
+          1,
+          5
+        ],
+        "initial": [
+          1,
+          1
+        ],
+        "step_size": 0.5,
+        "iterations": 2,
+        "tv_weight": 1,
+        "quadratic_weight": 0,
+        "tv_pixel_weights": [
+          1,
+          1
+        ],
+        "direction": {
+          "attenuation": [
+            0,
+            0
+          ],
+          "background": [
+            0,
+            0
+          ],
+          "data": [
+            0,
+            0
+          ],
+          "initial": [
+            0,
+            0
+          ],
+          "tv_weight": -1,
+          "quadratic_weight": 0
+        }
+      },
+      "expected": {
+        "image": [
+          2.5,
+          2.5
+        ],
+        "response": [
+          -0.3333333333315097,
+          -0.3333333333315097
+        ]
+      }
+    }
+  ]
+}

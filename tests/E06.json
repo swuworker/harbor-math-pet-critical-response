@@ -1,0 +1,198 @@
+{
+  "cases": [
+    {
+      "request": {
+        "action": "directional",
+        "nx": 2,
+        "ny": 1,
+        "origin": [
+          0,
+          0
+        ],
+        "spacing": [
+          1,
+          1
+        ],
+        "rays": [
+          [
+            0.5,
+            -1,
+            0.5,
+            2
+          ],
+          [
+            1.5,
+            -1,
+            1.5,
+            2
+          ]
+        ],
+        "psf": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "attenuation": [
+          0,
+          0
+        ],
+        "efficiency": [
+          1,
+          1
+        ],
+        "background": [
+          0,
+          0
+        ],
+        "data": [
+          3,
+          3
+        ],
+        "initial": [
+          1,
+          1
+        ],
+        "step_size": 0.5,
+        "iterations": 1,
+        "tv_weight": 0,
+        "quadratic_weight": 0,
+        "tv_pixel_weights": [
+          1,
+          1
+        ],
+        "direction": {
+          "attenuation": [
+            0,
+            0
+          ],
+          "background": [
+            0,
+            0
+          ],
+          "data": [
+            1,
+            -1
+          ],
+          "initial": [
+            0,
+            0
+          ],
+          "tv_weight": 0.25,
+          "quadratic_weight": 0
+        }
+      },
+      "expected": {
+        "image": [
+          2.0,
+          2.0
+        ],
+        "response": [
+          0.2499999999963616,
+          -0.24999999999790007
+        ]
+      }
+    },
+    {
+      "request": {
+        "action": "directional",
+        "nx": 2,
+        "ny": 1,
+        "origin": [
+          0,
+          0
+        ],
+        "spacing": [
+          1,
+          1
+        ],
+        "rays": [
+          [
+            0.5,
+            -1,
+            0.5,
+            2
+          ],
+          [
+            1.5,
+            -1,
+            1.5,
+            2
+          ]
+        ],
+        "psf": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "attenuation": [
+          0,
+          0
+        ],
+        "efficiency": [
+          1,
+          1
+        ],
+        "background": [
+          0,
+          0
+        ],
+        "data": [
+          3,
+          3
+        ],
+        "initial": [
+          1,
+          1
+        ],
+        "step_size": 0.5,
+        "iterations": 1,
+        "tv_weight": 0,
+        "quadratic_weight": 0,
+        "tv_pixel_weights": [
+          1,
+          1
+        ],
+        "direction": {
+          "attenuation": [
+            0,
+            0
+          ],
+          "background": [
+            0,
+            0
+          ],
+          "data": [
+            2,
+            -2
+          ],
+          "initial": [
+            0,
+            0
+          ],
+          "tv_weight": 0.5,
+          "quadratic_weight": 0
+        }
+      },
+      "expected": {
+        "image": [
+          2.0,
+          2.0
+        ],
+        "response": [
+          0.5000000000054009,
+          -0.500000000001568
+        ]
+      }
+    }
+  ]
+}

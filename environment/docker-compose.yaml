@@ -1,0 +1,4 @@
+services:
+  main:
+    image: harbor-pet-critical:v2
+    pull_policy: never

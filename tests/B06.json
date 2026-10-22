@@ -1,0 +1,96 @@
+{
+  "cases": [
+    {
+      "request": {
+        "action": "reconstruct",
+        "nx": 2,
+        "ny": 1,
+        "origin": [
+          0,
+          0
+        ],
+        "spacing": [
+          1,
+          1
+        ],
+        "rays": [
+          [
+            0.5,
+            -1,
+            0.5,
+            2
+          ],
+          [
+            1.5,
+            -1,
+            1.5,
+            2
+          ]
+        ],
+        "psf": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "attenuation": [
+          0,
+          0
+        ],
+        "efficiency": [
+          1,
+          1
+        ],
+        "background": [
+          0,
+          0
+        ],
+        "data": [
+          1,
+          5
+        ],
+        "initial": [
+          1,
+          1
+        ],
+        "step_size": 0.5,
+        "iterations": 3,
+        "tv_weight": 1,
+        "quadratic_weight": 0,
+        "tv_pixel_weights": [
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "image": [
+          2.75,
+          2.75
+        ],
+        "history": [
+          [
+            1.0,
+            1.0
+          ],
+          [
+            2.0,
+            2.0
+          ],
+          [
+            2.5,
+            2.5
+          ],
+          [
+            2.75,
+            2.75
+          ]
+        ],
+        "objective": -0.5696054700708792
+      }
+    }
+  ]
+}

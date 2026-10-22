@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "request": {
+        "action": "forward",
+        "nx": 1,
+        "ny": 1,
+        "origin": [
+          0,
+          0
+        ],
+        "spacing": [
+          2,
+          1
+        ],
+        "rays": [
+          [
+            -1,
+            0.5,
+            3,
+            0.5
+          ]
+        ],
+        "psf": [
+          [
+            1
+          ]
+        ],
+        "attenuation": [
+          0
+        ],
+        "efficiency": [
+          1
+        ],
+        "background": [
+          0.25
+        ],
+        "activity": [
+          3
+        ],
+        "cotangent": [
+          -0.5
+        ]
+      },
+      "expected": {
+        "ray_matrix": [
+          [
+            2.0
+          ]
+        ],
+        "system_matrix": [
+          [
+            2.0
+          ]
+        ],
+        "mean": [
+          6.25
+        ],
+        "adjoint": [
+          -1.0
+        ]
+      }
+    }
+  ]
+}
