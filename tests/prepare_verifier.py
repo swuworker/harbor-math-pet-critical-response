@@ -45,7 +45,11 @@ if output.is_symlink():
 output.mkdir(exist_ok=True, parents=True)
 os.chown(output, 0, 0)
 output.chmod(0o700)
+owned = {'reward.txt', 'reward.json', 'case-results.json', 'verification-security.json',
+         'verifier-failure.json'}
 for path in output.iterdir():
+    if not (path.name in owned or path.name.startswith(('case-', '.quarantined-', '.zero-'))):
+        continue
     if path.is_dir() and not path.is_symlink():
         shutil.rmtree(path)
     else:

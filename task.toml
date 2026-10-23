@@ -15,7 +15,7 @@ difficulty_status = "target_unvalidated"
 timeout_sec = 3600
 user = "candidate"
 [verifier]
-timeout_sec = 700
+timeout_sec = 900
 user = "root"
 environment_mode = "shared"
 [environment]
@@ -24,4 +24,3 @@ allow_internet = true
 cpus = 1
 memory_mb = 2048
 storage_mb = 4096
-docker_image = "harbor-pet-critical:v2"

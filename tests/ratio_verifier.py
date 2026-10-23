@@ -1,4 +1,4 @@
-"""Run trusted hidden test wrappers and write equal-item reward inside a verifier container.
+"""Run trusted hidden wrappers and write versioned reward inside a verifier container.
 
 Wrapper contract: exit 0=pass, 1=candidate failed, all other exits=grader invalid.
 Wrappers must catch candidate crashes/timeouts and return 1; a wrapper timeout is invalid.
@@ -12,6 +12,11 @@ import signal
 import subprocess
 import sys
 import uuid
+import importlib.util
+
+_spec = importlib.util.spec_from_file_location('_harbor_scoring_policy', Path(__file__).with_name('scoring_policy.py'))
+scoring_policy = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(scoring_policy)
 
 
 def digest(value):
@@ -39,8 +44,7 @@ def run(manifest_path, out_dir):
             raise ValueError("reward.json also exists; only one reward format is allowed")
         manifest = json.loads(Path(manifest_path).read_text(encoding="utf-8-sig"))
         tests = manifest["tests"]
-        if manifest.get("schema_version") != "1.0" or not tests:
-            raise ValueError("nonempty schema 1.0 tests required")
+        scoring_policy.weights(manifest)
         ids = [t["id"] for t in tests]
         if len(set(ids)) != len(ids) or any(not isinstance(i, str) or not i for i in ids):
             raise ValueError("unique nonempty IDs required")
@@ -48,8 +52,6 @@ def run(manifest_path, out_dir):
         for t in tests:
             if not isinstance(t.get("pass_criteria"), str) or not t["pass_criteria"].strip():
                 raise ValueError("pass_criteria required")
-            if "weight" in t and (type(t["weight"]) not in (int, float) or t["weight"] != 1):
-                raise ValueError("unequal weights prohibited")
             argv = t.get("command")
             if not isinstance(argv, list) or not argv or any(not isinstance(a, str) for a in argv):
                 raise ValueError("trusted wrapper command must be a nonempty argv array")
@@ -79,11 +81,12 @@ def run(manifest_path, out_dir):
         if invalid:
             report["reason"] = "grader error or wrapper timeout; placeholder zero is not a model score"
         else:
-            report.update(execution_status="completed", raw_reward=passed / len(tests))
+            value = scoring_policy.earned(manifest, report['case_results'])
+            report.update(execution_status="completed", raw_reward=float(value), reward_fraction=str(value), scoring_schema=manifest['schema_version'])
             report.pop("reason", None)
             # Write the complete result first; interruption cannot leave a positive stale score.
             write(report_path, report)
-            reward.write_text(format(passed / len(tests), ".17g") + "\n", encoding="ascii")
+            reward.write_text(format(float(value), ".17g") + "\n", encoding="ascii")
         write(report_path, report)
         return 2 if invalid else 0
     except (Exception, KeyboardInterrupt) as e:

@@ -9,7 +9,7 @@ def main():
     # failure here must reach the outer infrastructure-error boundary.
     sys.path.insert(0, '/tests')
     import pytest
-    from test_kernel import IDS
+    from test_kernel import IDS, MANIFEST
 
     if os.geteuid() != 0 or len(sys.argv) != 2 or sys.argv[1] not in IDS:
         return 2
@@ -34,7 +34,7 @@ def main():
     results = Results()
     result = pytest.main(
         ['-q', '-s', '--tb=short', '-p', 'no:cacheprovider',
-         f'/tests/test_kernel.py::test_contract[{sys.argv[1]}]'],
+         '/tests/test_kernel.py::' + next(t['pytest_function'] for t in MANIFEST['tests'] if t['id'] == sys.argv[1])],
         plugins=[results],
     )
     calls = [r for r in results.reports if r.when == 'call']

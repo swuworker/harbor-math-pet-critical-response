@@ -12,8 +12,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PATH="/opt/venv/bin:${PATH}" \
     HOME=/home/candidate
 
+COPY requirements.lock /tmp/requirements.lock
 RUN python -m venv /opt/venv \
-    && /opt/venv/bin/pip install --no-cache-dir numpy==2.2.6 scipy==1.15.3 clarabel==0.11.1 cffi==2.0.0 pycparser==2.23 \
+    && /opt/venv/bin/pip install --no-cache-dir -r /tmp/requirements.lock \
     && useradd --uid 1000 --create-home --shell /bin/sh candidate \
     && mkdir -p /app/src \
     && chown -R root:root /opt/venv \

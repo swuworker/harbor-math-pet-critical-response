@@ -1,485 +1,765 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
+  "scoring": {
+    "method": "weighted_sum",
+    "category_weights": {
+      "core": "2/5",
+      "rules": "1/4",
+      "boundary": "1/5",
+      "format": "1/10",
+      "performance": "1/20"
+    }
+  },
   "tests": [
     {
       "id": "A01",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A01: 单位单像素弦长. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A01: 单位单像素弦长. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A01"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_a01_unit_pixel_chord",
+      "weight": "2/65"
     },
     {
       "id": "A02",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A02: 斜射线跨多个像素. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A02: 斜射线跨多个像素. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A02"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_a02_oblique_pixel_chords",
+      "weight": "2/65"
     },
     {
       "id": "A03",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A03: 非方形像素及坐标平移. All required public fields for all 2 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A03: 非方形像素及坐标平移. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A03"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_a03_translated_rectangular_pixels",
+      "weight": "1/70"
     },
     {
       "id": "A04",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A04: 整条符合线衰减. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A04: 整条符合线衰减. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A04"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_a04_whole_line_attenuation",
+      "weight": "1/52"
     },
     {
       "id": "A05",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A05: 非对称PSF伴随. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A05: 非对称PSF伴随. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A05"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_a05_asymmetric_psf_adjoint",
+      "weight": "1/52"
     },
     {
       "id": "A06",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A06: 模糊/投影/衰减次序. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A06: 模糊/投影/衰减次序. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A06"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_a06_blur_projection_order",
+      "weight": "1/52"
     },
     {
       "id": "A07",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A07: 非均匀效率和非均匀灵敏度. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A07: 非均匀效率和非均匀灵敏度. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A07"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_a07_nonuniform_sensitivity",
+      "weight": "1/52"
     },
     {
       "id": "A08",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "A08: 有符号伴随及背景排除. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "A08: 有符号伴随及背景排除. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "A08"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_a08_signed_cotangent_background",
+      "weight": "1/52"
     },
     {
       "id": "B01",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "B01: 无正则单步. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "B01: 无正则单步. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "B01"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_b01_unregularized_mirror_step",
+      "weight": "2/65"
     },
     {
       "id": "B02",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "B02: 非均匀灵敏度单步. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "B02: 非均匀灵敏度单步. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "B02"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_b02_nonuniform_mirror_metric",
+      "weight": "1/52"
     },
     {
       "id": "B03",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "B03: 背景与零观测. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "B03: 背景与零观测. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "B03"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_b03_zero_count_background",
+      "weight": "1/70"
     },
     {
       "id": "B04",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "B04: 纯二次正则. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "B04: 纯二次正则. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "B04"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_b04_quadratic_proximal_step",
+      "weight": "2/65"
     },
     {
       "id": "B05",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "B05: 不同步长缩放. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "B05: 不同步长缩放. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "B05"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_b05_step_size_scaling",
+      "weight": "1/52"
     },
     {
       "id": "B06",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "B06: 有限步与最终最优解区别. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "B06: 有限步与最终最优解区别. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "B06"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_b06_finite_iteration_history",
+      "weight": "1/52"
     },
     {
       "id": "C01",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C01: 二维各向同性组. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C01: 二维各向同性组. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C01"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_c01_isotropic_group_coupling",
+      "weight": "2/65"
     },
     {
       "id": "C02",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C02: 网格边界与间距. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C02: 网格边界与间距. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C02"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_c02_boundary_spacing_tv",
+      "weight": "1/70"
     },
     {
       "id": "C03",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C03: 非均匀TV权重. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C03: 非均匀TV权重. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C03"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_c03_weighted_tv_groups",
+      "weight": "1/52"
     },
     {
       "id": "C04",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C04: 严格融合的平坦块. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C04: 严格融合的平坦块. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C04"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_c04_strictly_fused_plateau",
+      "weight": "1/70"
     },
     {
       "id": "C05",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C05: 两个未融合像素区域. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C05: 两个未融合像素区域. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C05"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_c05_unfused_regions",
+      "weight": "1/70"
     },
     {
       "id": "C06",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C06: 二次与TV共同作用. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C06: 二次与TV共同作用. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C06"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_c06_quadratic_tv_interaction",
+      "weight": "2/65"
     },
     {
       "id": "C07",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C07: 右近端与单步滞后区别. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C07: 右近端与单步滞后区别. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C07"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_c07_right_proximal_coupling",
+      "weight": "1/52"
     },
     {
       "id": "C08",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "C08: 临界融合点基准图像. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "C08: 临界融合点基准图像. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "C08"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_c08_critical_fusion_image",
+      "weight": "1/70"
     },
     {
       "id": "D01",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D01: 光滑单像素初值响应. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D01: 光滑单像素初值响应. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D01"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_d01_smooth_initial_response",
+      "weight": "2/65"
     },
     {
       "id": "D02",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D02: 衰减改变A和镜像度量. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D02: 衰减改变A和镜像度量. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D02"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_d02_attenuation_metric_response",
+      "weight": "1/52"
     },
     {
       "id": "D03",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D03: 背景方向. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D03: 背景方向. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D03"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_d03_background_response",
+      "weight": "2/65"
     },
     {
       "id": "D04",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D04: 数据方向含基准零计数. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D04: 数据方向含基准零计数. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D04"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_d04_zero_count_data_response",
+      "weight": "1/70"
     },
     {
       "id": "D05",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D05: 临界融合增强TV方向. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D05: 临界融合增强TV方向. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D05"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_d05_critical_tv_increase",
+      "weight": "1/70"
     },
     {
       "id": "D06",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D06: 临界融合减弱TV方向. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D06: 临界融合减弱TV方向. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D06"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_d06_critical_tv_decrease",
+      "weight": "1/70"
     },
     {
       "id": "D07",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D07: 非零二维组曲率. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D07: 非零二维组曲率. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D07"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_d07_nonzero_group_curvature",
+      "weight": "2/65"
     },
     {
       "id": "D08",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D08: 严格融合块内部方向. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D08: 严格融合块内部方向. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D08"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_d08_fused_block_response",
+      "weight": "1/70"
     },
     {
       "id": "D09",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D09: 临界二维组的可行方向. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D09: 临界二维组的可行方向. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D09"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_d09_critical_group_feasibility",
+      "weight": "1/70"
     },
     {
       "id": "D10",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D10: 多步链式依赖. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D10: 多步链式依赖. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D10"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_d10_chained_step_response",
+      "weight": "2/65"
     },
     {
       "id": "D11",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D11: 联合参数方向. All required public fields for all 3 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D11: 联合参数方向. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D11"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_d11_joint_parameter_response",
+      "weight": "2/65"
     },
     {
       "id": "D12",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "D12: K=0方向语义. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "D12: K=0方向语义. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "D12"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_d12_zero_step_response",
+      "weight": "1/70"
     },
     {
       "id": "E01",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "E01: 非对称PSF与变衰减. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "E01: 非对称PSF与变衰减. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "E01"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_e01_blur_attenuation_interaction",
+      "weight": "2/65"
     },
     {
       "id": "E02",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "E02: 混合正则与非均匀效率. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "E02: 混合正则与非均匀效率. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "E02"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "core",
+      "pytest_function": "test_e02_mixed_regularizers_efficiency",
+      "weight": "2/65"
     },
     {
       "id": "E03",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "E03: 较早一步临界融合影响后续. All required public fields for all 1 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "E03: 较早一步临界融合影响后续. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "E03"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_e03_early_critical_step",
+      "weight": "1/70"
     },
     {
       "id": "E04",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "E04: 二维组边界与相邻边同时临界. All required public fields for all 2 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "E04: 二维组边界与相邻边同时临界. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "E04"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "boundary",
+      "pytest_function": "test_e04_adjacent_critical_groups",
+      "weight": "1/70"
     },
     {
       "id": "E05",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "E05: 网格轴互换与射线重排. All required public fields for all 2 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "E05: 网格轴互换与射线重排. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "E05"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_e05_axis_ray_permutation",
+      "weight": "1/52"
     },
     {
       "id": "E06",
       "path": "tests/test_kernel.py",
-      "pass_criteria": "E06: 联合方向的正齐次性及一般响应. All required public fields for all 2 requests meet instruction.md elementwise tolerances; one equally weighted item.",
+      "pass_criteria": "E06: 联合方向的正齐次性及一般响应. All specified fields of every request meet the public numerical tolerances.",
       "command": [
         "/opt/venv/bin/python",
         "-I",
         "/tests/check.py",
         "E06"
       ],
-      "timeout_sec": 15
+      "timeout_sec": 15,
+      "category": "rules",
+      "pytest_function": "test_e06_positive_direction_homogeneity",
+      "weight": "1/52"
+    },
+    {
+      "id": "F01",
+      "category": "format",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_f01_forward_matrix_vectors_format",
+      "pass_criteria": "forward_matrix_vectors: required field presence, finite numeric scalar/list types and exact dimensions; mathematical values are not compared.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "F01"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/50"
+    },
+    {
+      "id": "P01",
+      "category": "performance",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_p01_forward_matrix_vectors_performance",
+      "pass_criteria": "forward_matrix_vectors: all candidate processes exit successfully, cumulative elapsed <=10 seconds for <=3 calls, stdout <=8388608 bytes per call; no schema or numeric comparison.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "P01"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/100"
+    },
+    {
+      "id": "F02",
+      "category": "format",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_f02_finite_history_objective_format",
+      "pass_criteria": "finite_history_objective: required field presence, finite numeric scalar/list types and exact dimensions; mathematical values are not compared.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "F02"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/50"
+    },
+    {
+      "id": "P02",
+      "category": "performance",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_p02_finite_history_objective_performance",
+      "pass_criteria": "finite_history_objective: all candidate processes exit successfully, cumulative elapsed <=10 seconds for <=3 calls, stdout <=8388608 bytes per call; no schema or numeric comparison.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "P02"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/100"
+    },
+    {
+      "id": "F03",
+      "category": "format",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_f03_zero_step_direction_format",
+      "pass_criteria": "zero_step_direction: required field presence, finite numeric scalar/list types and exact dimensions; mathematical values are not compared.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "F03"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/50"
+    },
+    {
+      "id": "P03",
+      "category": "performance",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_p03_zero_step_direction_performance",
+      "pass_criteria": "zero_step_direction: all candidate processes exit successfully, cumulative elapsed <=10 seconds for <=3 calls, stdout <=8388608 bytes per call; no schema or numeric comparison.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "P03"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/100"
+    },
+    {
+      "id": "F04",
+      "category": "format",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_f04_critical_direction_format",
+      "pass_criteria": "critical_direction: required field presence, finite numeric scalar/list types and exact dimensions; mathematical values are not compared.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "F04"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/50"
+    },
+    {
+      "id": "P04",
+      "category": "performance",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_p04_critical_direction_performance",
+      "pass_criteria": "critical_direction: all candidate processes exit successfully, cumulative elapsed <=10 seconds for <=3 calls, stdout <=8388608 bytes per call; no schema or numeric comparison.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "P04"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/100"
+    },
+    {
+      "id": "F05",
+      "category": "format",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_f05_joint_directions_format",
+      "pass_criteria": "joint_directions: required field presence, finite numeric scalar/list types and exact dimensions; mathematical values are not compared.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "F05"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/50"
+    },
+    {
+      "id": "P05",
+      "category": "performance",
+      "path": "tests/test_kernel.py",
+      "pytest_function": "test_p05_joint_directions_performance",
+      "pass_criteria": "joint_directions: all candidate processes exit successfully, cumulative elapsed <=10 seconds for <=3 calls, stdout <=8388608 bytes per call; no schema or numeric comparison.",
+      "command": [
+        "/opt/venv/bin/python",
+        "-I",
+        "/tests/check.py",
+        "P05"
+      ],
+      "timeout_sec": 15,
+      "weight": "1/100"
     }
   ]
 }

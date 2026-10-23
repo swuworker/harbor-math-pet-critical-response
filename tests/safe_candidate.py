@@ -49,7 +49,7 @@ def _unique_object(pairs):
     return result
 
 
-def run_payload(payload, budget):
+def run_payload(payload, budget, budget_only=False):
     executable = Path("/opt/venv/bin/python")
     runner = Path("/app/run_case.py")
     if os.geteuid() != 0 or not executable.is_file() or not runner.is_file():
@@ -75,6 +75,12 @@ def run_payload(payload, budget):
             try:
                 process.communicate(json.dumps(payload, allow_nan=False).encode(), timeout=max(0.001, remaining-(time.monotonic()-started)))
             except subprocess.TimeoutExpired as exc:
+                elapsed = time.monotonic() - started
+                budget["elapsed"] += elapsed
+                budget["calls"] += 1
+                print(json.dumps({"event": "candidate_budget", "call_seconds": elapsed,
+                                  "cumulative_seconds": budget["elapsed"], "calls": budget["calls"],
+                                  "timed_out": True}), flush=True)
                 raise CandidateFailure("Candidate exceeded the public cumulative 10-second per-item limit") from exc
             elapsed = time.monotonic() - started
             budget["elapsed"] += elapsed
@@ -95,6 +101,8 @@ def run_payload(payload, budget):
                 raise CandidateFailure(f"Candidate exited {process.returncode}")
             if len(stdout) > 8 * 1024 * 1024:
                 raise CandidateFailure("Candidate output exceeds the public 8 MiB limit")
+            if budget_only:
+                return {'elapsed': elapsed, 'stdout_bytes': len(stdout), 'returncode': process.returncode}
             try:
                 result = json.loads(stdout.decode("utf-8"), object_pairs_hook=_unique_object,
                                     parse_int=_json_integer,
